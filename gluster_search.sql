@@ -3,7 +3,6 @@
 --
 
 SET statement_timeout = 0;
-SET lock_timeout = 0;
 SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
 SET check_function_bodies = false;
@@ -26,7 +25,7 @@ COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
 SET search_path = public, pg_catalog;
 
 --
--- Name: directories_id_seq; Type: SEQUENCE; Schema: public; Owner: fijisearch
+-- Name: directories_id_seq; Type: SEQUENCE; Schema: public; Owner: gluster_search
 --
 
 CREATE SEQUENCE directories_id_seq
@@ -37,14 +36,14 @@ CREATE SEQUENCE directories_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.directories_id_seq OWNER TO fijisearch;
+ALTER TABLE public.directories_id_seq OWNER TO gluster_search;
 
 SET default_tablespace = '';
 
 SET default_with_oids = false;
 
 --
--- Name: directories; Type: TABLE; Schema: public; Owner: fijisearch; Tablespace: 
+-- Name: directories; Type: TABLE; Schema: public; Owner: gluster_search; Tablespace: 
 --
 
 CREATE TABLE directories (
@@ -57,10 +56,10 @@ CREATE TABLE directories (
 );
 
 
-ALTER TABLE public.directories OWNER TO fijisearch;
+ALTER TABLE public.directories OWNER TO gluster_search;
 
 --
--- Name: found_files; Type: TABLE; Schema: public; Owner: fijisearch; Tablespace: 
+-- Name: found_files; Type: TABLE; Schema: public; Owner: gluster_search; Tablespace: 
 --
 
 CREATE TABLE found_files (
@@ -83,10 +82,10 @@ CREATE TABLE found_files (
 );
 
 
-ALTER TABLE public.found_files OWNER TO fijisearch;
+ALTER TABLE public.found_files OWNER TO gluster_search;
 
 --
--- Name: found_files_id_seq; Type: SEQUENCE; Schema: public; Owner: fijisearch
+-- Name: found_files_id_seq; Type: SEQUENCE; Schema: public; Owner: gluster_search
 --
 
 CREATE SEQUENCE found_files_id_seq
@@ -97,17 +96,17 @@ CREATE SEQUENCE found_files_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.found_files_id_seq OWNER TO fijisearch;
+ALTER TABLE public.found_files_id_seq OWNER TO gluster_search;
 
 --
--- Name: found_files_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: fijisearch
+-- Name: found_files_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: gluster_search
 --
 
 ALTER SEQUENCE found_files_id_seq OWNED BY found_files.id;
 
 
 --
--- Name: missing_files; Type: TABLE; Schema: public; Owner: fijisearch; Tablespace: 
+-- Name: missing_files; Type: TABLE; Schema: public; Owner: gluster_search; Tablespace: 
 --
 
 CREATE TABLE missing_files (
@@ -120,10 +119,10 @@ CREATE TABLE missing_files (
 );
 
 
-ALTER TABLE public.missing_files OWNER TO fijisearch;
+ALTER TABLE public.missing_files OWNER TO gluster_search;
 
 --
--- Name: missing_files_id_seq; Type: SEQUENCE; Schema: public; Owner: fijisearch
+-- Name: missing_files_id_seq; Type: SEQUENCE; Schema: public; Owner: gluster_search
 --
 
 CREATE SEQUENCE missing_files_id_seq
@@ -134,17 +133,17 @@ CREATE SEQUENCE missing_files_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.missing_files_id_seq OWNER TO fijisearch;
+ALTER TABLE public.missing_files_id_seq OWNER TO gluster_search;
 
 --
--- Name: missing_files_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: fijisearch
+-- Name: missing_files_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: gluster_search
 --
 
 ALTER SEQUENCE missing_files_id_seq OWNED BY missing_files.id;
 
 
 --
--- Name: publishers; Type: TABLE; Schema: public; Owner: fijisearch; Tablespace: 
+-- Name: publishers; Type: TABLE; Schema: public; Owner: gluster_search; Tablespace: 
 --
 
 CREATE TABLE publishers (
@@ -153,10 +152,10 @@ CREATE TABLE publishers (
 );
 
 
-ALTER TABLE public.publishers OWNER TO fijisearch;
+ALTER TABLE public.publishers OWNER TO gluster_search;
 
 --
--- Name: sync_status; Type: TABLE; Schema: public; Owner: fijisearch; Tablespace: 
+-- Name: sync_status; Type: TABLE; Schema: public; Owner: gluster_search; Tablespace: 
 --
 
 CREATE TABLE sync_status (
@@ -172,24 +171,24 @@ CREATE TABLE sync_status (
 );
 
 
-ALTER TABLE public.sync_status OWNER TO fijisearch;
+ALTER TABLE public.sync_status OWNER TO gluster_search;
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: fijisearch
+-- Name: id; Type: DEFAULT; Schema: public; Owner: gluster_search
 --
 
 ALTER TABLE ONLY found_files ALTER COLUMN id SET DEFAULT nextval('found_files_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: fijisearch
+-- Name: id; Type: DEFAULT; Schema: public; Owner: gluster_search
 --
 
 ALTER TABLE ONLY missing_files ALTER COLUMN id SET DEFAULT nextval('missing_files_id_seq'::regclass);
 
 
 --
--- Name: sync_status_pkey; Type: CONSTRAINT; Schema: public; Owner: fijisearch; Tablespace: 
+-- Name: sync_status_pkey; Type: CONSTRAINT; Schema: public; Owner: gluster_search; Tablespace: 
 --
 
 ALTER TABLE ONLY sync_status
@@ -197,110 +196,110 @@ ALTER TABLE ONLY sync_status
 
 
 --
--- Name: directories_host_brick_idx; Type: INDEX; Schema: public; Owner: fijisearch; Tablespace: 
+-- Name: directories_host_brick_idx; Type: INDEX; Schema: public; Owner: gluster_search; Tablespace: 
 --
 
 CREATE INDEX directories_host_brick_idx ON directories USING btree (host, brick);
 
 
 --
--- Name: directories_path_idx; Type: INDEX; Schema: public; Owner: fijisearch; Tablespace: 
+-- Name: directories_path_idx; Type: INDEX; Schema: public; Owner: gluster_search; Tablespace: 
 --
 
 CREATE INDEX directories_path_idx ON directories USING btree (path);
 
 
 --
--- Name: found_files_asset_by_pub_idx; Type: INDEX; Schema: public; Owner: fijisearch; Tablespace: 
+-- Name: found_files_asset_by_pub_idx; Type: INDEX; Schema: public; Owner: gluster_search; Tablespace: 
 --
 
 CREATE INDEX found_files_asset_by_pub_idx ON found_files USING btree (asset_id, pub_id);
 
 
 --
--- Name: found_files_asset_id_idx; Type: INDEX; Schema: public; Owner: fijisearch; Tablespace: 
+-- Name: found_files_asset_id_idx; Type: INDEX; Schema: public; Owner: gluster_search; Tablespace: 
 --
 
 CREATE INDEX found_files_asset_id_idx ON found_files USING btree (asset_id);
 
 
 --
--- Name: found_files_host_brick_size_idx; Type: INDEX; Schema: public; Owner: fijisearch; Tablespace: 
+-- Name: found_files_host_brick_size_idx; Type: INDEX; Schema: public; Owner: gluster_search; Tablespace: 
 --
 
 CREATE INDEX found_files_host_brick_size_idx ON found_files USING btree (host, brick, gfs_size);
 
 
 --
--- Name: found_files_id_idx; Type: INDEX; Schema: public; Owner: fijisearch; Tablespace: 
+-- Name: found_files_id_idx; Type: INDEX; Schema: public; Owner: gluster_search; Tablespace: 
 --
 
 CREATE INDEX found_files_id_idx ON found_files USING btree (id);
 
 
 --
--- Name: found_files_path_idx; Type: INDEX; Schema: public; Owner: fijisearch; Tablespace: 
+-- Name: found_files_path_idx; Type: INDEX; Schema: public; Owner: gluster_search; Tablespace: 
 --
 
 CREATE INDEX found_files_path_idx ON found_files USING btree (path);
 
 
 --
--- Name: found_files_pub_id_idx; Type: INDEX; Schema: public; Owner: fijisearch; Tablespace: 
+-- Name: found_files_pub_id_idx; Type: INDEX; Schema: public; Owner: gluster_search; Tablespace: 
 --
 
 CREATE INDEX found_files_pub_id_idx ON found_files USING btree (pub_id);
 
 
 --
--- Name: found_files_source_id_idx; Type: INDEX; Schema: public; Owner: fijisearch; Tablespace: 
+-- Name: found_files_source_id_idx; Type: INDEX; Schema: public; Owner: gluster_search; Tablespace: 
 --
 
 CREATE INDEX found_files_source_id_idx ON found_files USING btree (source_id);
 
 
 --
--- Name: missing_files_asset_id_idx; Type: INDEX; Schema: public; Owner: fijisearch; Tablespace: 
+-- Name: missing_files_asset_id_idx; Type: INDEX; Schema: public; Owner: gluster_search; Tablespace: 
 --
 
 CREATE INDEX missing_files_asset_id_idx ON missing_files USING btree (asset_id);
 
 
 --
--- Name: missing_files_asset_id_pub_id_idx; Type: INDEX; Schema: public; Owner: fijisearch; Tablespace: 
+-- Name: missing_files_asset_id_pub_id_idx; Type: INDEX; Schema: public; Owner: gluster_search; Tablespace: 
 --
 
 CREATE INDEX missing_files_asset_id_pub_id_idx ON missing_files USING btree (asset_id, pub_id);
 
 
 --
--- Name: missing_files_id_idx; Type: INDEX; Schema: public; Owner: fijisearch; Tablespace: 
+-- Name: missing_files_id_idx; Type: INDEX; Schema: public; Owner: gluster_search; Tablespace: 
 --
 
 CREATE INDEX missing_files_id_idx ON missing_files USING btree (id);
 
 
 --
--- Name: missing_files_path_idx; Type: INDEX; Schema: public; Owner: fijisearch; Tablespace: 
+-- Name: missing_files_path_idx; Type: INDEX; Schema: public; Owner: gluster_search; Tablespace: 
 --
 
 CREATE INDEX missing_files_path_idx ON missing_files USING btree (bcfs_key);
 
 
 --
--- Name: missing_files_pub_id_idx; Type: INDEX; Schema: public; Owner: fijisearch; Tablespace: 
+-- Name: missing_files_pub_id_idx; Type: INDEX; Schema: public; Owner: gluster_search; Tablespace: 
 --
 
 CREATE INDEX missing_files_pub_id_idx ON missing_files USING btree (pub_id);
 
 
 --
--- Name: public; Type: ACL; Schema: -; Owner: fijisearch
+-- Name: public; Type: ACL; Schema: -; Owner: gluster_search
 --
 
 REVOKE ALL ON SCHEMA public FROM PUBLIC;
-REVOKE ALL ON SCHEMA public FROM fijisearch;
-GRANT ALL ON SCHEMA public TO fijisearch;
+REVOKE ALL ON SCHEMA public FROM gluster_search;
+GRANT ALL ON SCHEMA public TO gluster_search;
 GRANT ALL ON SCHEMA public TO PUBLIC;
 
 

@@ -36,9 +36,9 @@ Once all directories have been searched, one can simply run simple queries again
 ## Scripts
 * gluster_search.sql - defines the schema for the PostgreSQL database that will hold the results of the search.
 * populate_folder_records.pl - creates the folder records that track the progress of the search.
-* clear_dead_searches.pl - cleans up interrupted partial searches. NEVER run this while and search workers are active!
+* clear_dead_searches.pl - cleans up interrupted partial searches. NEVER run this while any search workers are active!
 * start_search.sh - starts one search worker for each brick on each gluster server.
-* smart_search.pl - does the actual work of searching the gluster bricks and recording the stats of each found file.
+* smart_search.pl - does the actual work of searching a gluster brick and recording the stats of each found file.
 * stop_search.sh - stops all running search workers on all gluster servers.
 * watch.pl - queries the database and prints a report of the progress of the search.
 * import_missing.pl - import a CSV file describing the missing files.

@@ -13,9 +13,9 @@ In order to break the search up into manageable chunks, the decision was made to
 ## Preparing the Database
 The schema for the database table is defined in gluster_search.sql. Create the database as follows:
 
-psql -c "create role gluster_search with login password 'gluster_search'"
-psql -c "create database gluster_search with owner gluster_search"
-psql -W gluster_search gluster_search << gluster_search.sql
+* psql -c "create role gluster_search with login password 'gluster_search'"
+* psql -c "create database gluster_search with owner gluster_search"
+* psql -W gluster_search gluster_search << gluster_search.sql
 
 
 ## Deploying the Scripts

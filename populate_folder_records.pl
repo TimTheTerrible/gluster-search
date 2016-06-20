@@ -61,14 +61,18 @@ our $DB;
 
         for ( my $j = 0; $j < $Depth; $j++ ) {
 
-            my $path = sprintf("/mnt/brick%2.2d/fiji/storage/falkland_cd1df22a25104544a9bdccda2a952c28/%2.2hx/%2.2hx", $Brick, $i, $j);
+            my $path = sprintf("/mnt/brick%2.2d/fiji/storage/falkland_cd1df22a25104544a9bdccda2a952c28/%2.2hx/%2.2hx",
+                $Brick, $i, $j);
             debugprint(DEBUG_TRACE, "path = '%s'", $path);
 
             my $cmd = sprintf("INSERT INTO directories (host,brick,path) VALUES('%s','brick%2.2d','%s')", $Host, $Brick, $path);
             debugprint(DEBUG_TRACE, "cmd = '%s'", $cmd);
 
             $DB->dbexec($cmd) unless $TestOnly;
+
+            last if $Limit;
         }
+        last if $Limit;
     }
 }
 
